@@ -1,21 +1,21 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { Text, TextInput, View } from 'react-native';
 
-export default function App() {
+const Nombres = () => {
+  const[Nombre, setNombreMayus] = useState('');
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{padding: 10}}>
+    <TextInput
+        style={{height: 90}}
+        placeholder="Escribe aca tu nombre en minuscula"
+        onChangeText={Nombre => setNombreMayus(Nombre)}
+        
+      />
+      <Text style={{padding: 10, fontSize: 30}}>
+      {Nombre.split(' ').map((word) => word.charAt(0).toUpperCase() + word.substring(1)).join(' ')}
+      </Text>
+      
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default Nombres
